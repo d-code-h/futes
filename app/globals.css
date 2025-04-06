@@ -5,7 +5,7 @@
 
 @theme inline {
   --color-background: #f8f9fa; /* Light gray background */
-  --color-foreground: #212529; /* Dark text for contrast */
+  --color-foreground: #212529; /* Dark text for contrast #212529;*/
 
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'Poppins', sans-serif;
@@ -19,8 +19,10 @@
   --color-secondary-foreground: #ffffff;
 
   /* Accent (Gold for Prestige) */
-  --color-accent: #ffcc00;
-  --color-accent-foreground: #212529;
+  --color-accent: #003366;
+  /* #ffcc00 */
+  --color-accent-foreground: #f1f3f5;
+  /* #212529 */
 
   /* Sidebar & UI Elements */
   --color-sidebar: #1c1f26;

@@ -10,39 +10,247 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { DialogTitle } from '@radix-ui/react-dialog';
 import { cn } from '@/lib/utils';
 
+// Accordion
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+
+// Dropdown menu of Desktop
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from '@/components/ui/navigation-menu';
+
+interface LinkType {
+  name: string;
+  href: string;
+  subMenu?: LinkType[];
+}
+
 const navLinks = [
   { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
+  {
+    name: 'About',
+    href: '/about',
+    subMenu: [
+      {
+        name: 'Overview',
+        href: '/about/overview',
+        subMenu: [
+          {
+            name: 'About the University',
+            href: '/about/overview/about-the-university',
+          },
+          {
+            name: 'FUTES in Timeline',
+            href: '/about/overview/futes-in-timeline',
+          },
+          {
+            name: 'The Chancellor',
+            href: '/about/overview/the-chancellor',
+          },
+          {
+            name: 'Principal Officers',
+            href: '/about/overview/principal-officers',
+          },
+          {
+            name: 'Management Team',
+            href: '/about/overview/management-team',
+          },
+          {
+            name: 'Faculty & Staff Profile',
+            href: '/about/overview/faculty-staff-profile',
+          },
+          {
+            name: "FUTES' Vision",
+            href: '/about/overview/vision',
+          },
+          {
+            name: 'Contact Us',
+            href: '/about/overview/contact-us',
+          },
+        ],
+      },
+      {
+        name: 'Operations',
+        href: '/about/operations',
+        subMenu: [
+          {
+            name: 'Contact Us',
+            href: '/about/overview/contact-us',
+          },
+        ],
+      },
+    ],
+  },
+  { name: 'Study', href: '/study' },
   { name: 'Admissions', href: '/admissions' },
-  { name: 'Academics', href: '/academics' },
-  { name: 'Research', href: '/research' },
-  { name: 'News', href: '/news' },
-  { name: 'Events', href: '/events' },
-  { name: 'Contact', href: '/contact' },
+  {
+    name: 'Information',
+    href: '/information',
+    subMenu: [
+      {
+        name: 'Information For',
+        href: '/information/information-for',
+        subMenu: [
+          { name: 'Departments', href: '/information/departments' },
+          { name: 'Library', href: '/information/library' },
+          { name: 'Notices', href: '/information/notices' },
+          { name: 'Student Affairs', href: '/information/student-affairs' },
+        ],
+      },
+      {
+        name: 'More',
+        href: '/information/more',
+        subMenu: [
+          { name: 'FAQS', href: '/information/more/faqs' },
+          { name: 'News', href: '/information/more/news' },
+          { name: 'Student Affairs', href: '/information/student-affairs' },
+        ],
+      },
+      {
+        name: 'Portals',
+        href: '/information/portals',
+        subMenu: [
+          {
+            name: 'Staff and Student Portal',
+            href: '/information/portals/staff-student',
+          },
+          {
+            name: 'E-Learning Portal',
+            href: '/information/portals/e-learning',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Campus Life',
+    href: '/campus-life',
+    subMenu: [
+      { name: 'Campus and Facilities', href: '/campus-life/campus-facilities' },
+      { name: 'Campus Tours', href: '/campus-life/campus-Tours' },
+    ],
+  },
+  { name: 'Research & Teaching', href: '/research-teaching' },
 ];
 
 const Nav = ({ type }: { type: 'MD' | 'LG' }) => {
-  console.log('Type', type);
   return (
-    // Desktop Navigation
-    <nav
+    <NavigationMenu
       className={cn(
-        ' gap-8',
+        'gap-8',
         type === 'MD'
-          ? 'hidden md:flex lg:hidden justify-center my-8'
-          : 'hidden lg:flex',
+          ? 'hidden md:flex lg:hidden mx-auto my-8'
+          : 'hidden lg:flex ms-auto',
       )}
     >
-      {navLinks.map((link) => (
-        <Link
-          key={link.name}
-          href={link.href}
-          className="text-sm font-medium hover:text-primary transition"
-        >
-          {link.name}
-        </Link>
+      <NavigationMenuList>
+        {navLinks.map((link) => {
+          if (link.subMenu) {
+            return (
+              <NavigationMenuItem key={link.name}>
+                <NavigationMenuTrigger>{link.name}</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  {link.subMenu.map((menu) => (
+                    <Link
+                      key={menu.name}
+                      className="text-sm font-medium hover:text-primary transition"
+                      href={menu.href}
+                      legacyBehavior
+                      passHref
+                    >
+                      <NavigationMenuLink
+                        className={navigationMenuTriggerStyle()}
+                      >
+                        {menu.name}
+                      </NavigationMenuLink>
+                    </Link>
+                  ))}
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            );
+          } else {
+            return (
+              <NavigationMenuItem key={link.name}>
+                <Link
+                  href={link.href}
+                  className="text-sm font-medium hover:text-primary transition"
+                  legacyBehavior
+                  passHref
+                >
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    {link.name}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            );
+          }
+        })}
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+};
+
+const SubMenu = ({ menu }: { menu: LinkType[] }) => {
+  return (
+    <Accordion type="single" collapsible className="w-full">
+      {menu.map(({ name, href, subMenu }: LinkType) => (
+        <div key={name}>
+          <AccordionItem value="item-1" className="border-none">
+            <div className="flex items-center gap-1">
+              <ChevronRight
+                style={{
+                  width: '16px',
+                  height: '16px',
+                }}
+              />
+
+              <AccordionTrigger>
+                <Link
+                  href={href}
+                  className="text-lg font-medium hover:underline uppercase"
+                >
+                  {name}
+                </Link>
+              </AccordionTrigger>
+            </div>
+            <AccordionContent>
+              <nav className="flex flex-col gap-2 mt-4">
+                {subMenu ? (
+                  <div>
+                    {Array.isArray(subMenu) && <SubMenu menu={subMenu} />}
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1">
+                    <ChevronRight
+                      style={{
+                        width: '16px',
+                        height: '16px',
+                      }}
+                    />
+                    <Link
+                      href={href}
+                      className="text-lg font-medium hover:underline uppercase"
+                    >
+                      {name}
+                    </Link>
+                  </div>
+                )}
+              </nav>
+            </AccordionContent>
+          </AccordionItem>
+        </div>
       ))}
-    </nav>
+    </Accordion>
   );
 };
 
@@ -97,21 +305,27 @@ const Header = () => {
                 <VisuallyHidden>
                   <h2>Navigation Menu</h2>
                 </VisuallyHidden>
-                <nav className="flex flex-col gap-4 mt-4">
+                <nav className="flex flex-col gap-2 mt-4">
                   {navLinks.map((link) => (
-                    <div key={link.name} className="flex items-center gap-1">
-                      <ChevronRight
-                        style={{
-                          width: '16px',
-                          height: '16px',
-                        }}
-                      />
-                      <Link
-                        href={link.href}
-                        className="text-lg font-medium hover:underline"
-                      >
-                        {link.name}
-                      </Link>
+                    <div key={link.name}>
+                      {link.subMenu ? (
+                        <SubMenu menu={link.subMenu} />
+                      ) : (
+                        <div className="flex items-center gap-1">
+                          <ChevronRight
+                            style={{
+                              width: '16px',
+                              height: '16px',
+                            }}
+                          />
+                          <Link
+                            href={link.href}
+                            className="text-lg font-medium hover:underline uppercase"
+                          >
+                            {link.name}
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </nav>

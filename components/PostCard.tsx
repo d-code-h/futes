@@ -26,9 +26,8 @@ const PostCard = ({ data }: Props) => {
   return (
     <Card
       className="p-0 w-full 
-     sm:w-[270px] md:w-[350px]
-     lg:min-w-[300px]
-    
+     sm:w-[270px] md:w-[350px] 
+     lg:min-w-[300px]  
     text-center"
     >
       <Image

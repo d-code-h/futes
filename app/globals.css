@@ -31,6 +31,10 @@
   --color-sidebar-accent-foreground: #ffffff;
   --color-sidebar-border: #2a2d34;
 
+  /* Sliders */
+  --color-slider: #00bb90;
+  --color-slider-foreground: #ffffff;
+
   /* Card & Popover */
   --color-card: #ffffff;
   --color-card-foreground: #212529;

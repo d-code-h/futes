@@ -30,3 +30,58 @@ export const gists = [
     },
   },
 ];
+
+export const courses = [
+  {
+    title: 'Environmental Science',
+    href: '#',
+  },
+  {
+    title: 'Renewable Energy Technology',
+    href: '#',
+  },
+  {
+    title: 'Climate Technology',
+    href: '#',
+  },
+  {
+    title: 'Environmental Engineering',
+    href: '#',
+  },
+  {
+    title: 'Biotechnology',
+    href: '#',
+  },
+  {
+    title: 'Computer Science with Environmental Applications',
+    href: '#',
+  },
+  {
+    title: 'Sustainable Design and Architecture',
+    href: '#',
+  },
+  {
+    title: 'Green Manufacturing',
+    href: '#',
+  },
+  {
+    title: 'Sustainability and Innovation',
+    href: '#',
+  },
+  {
+    title: 'Ecological Engineering',
+    href: '#',
+  },
+  {
+    title: 'Agroecological Technology',
+    href: '#',
+  },
+  {
+    title: 'Environmental Policy and Technology',
+    href: '#',
+  },
+  {
+    title: 'Environmental Robotics',
+    href: '#',
+  },
+];

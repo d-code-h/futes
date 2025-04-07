@@ -1,4 +1,5 @@
 import CarouselSlides from '@/components/CarouselSlides';
+import Departments from '@/components/Departments';
 import Gists from '@/components/Gists';
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <>
       <CarouselSlides />
       <Gists />
+      <Departments />
     </>
   );
 }

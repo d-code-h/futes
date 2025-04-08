@@ -134,3 +134,42 @@ export const aboutLinks = [
     title: 'FAQ',
   },
 ];
+
+export const chooseUsData = [
+  {
+    src: '/images/choose-us/choose-us-1.png',
+    title: 'Quality Education',
+    description:
+      'FUTES provides a well-rounded education that equips students with the skills and knowledge needed to excel in their chosen fields. Our curriculum is designed to foster innovation and critical thinking.',
+  },
+  {
+    src: '/images/choose-us/choose-us-2.png',
+    title: 'Modern Facilities',
+    description:
+      'Located in Iyin, Ekiti State, FUTES boasts state-of-the-art facilities, including well-equipped laboratories, libraries, and lecture halls, all designed to create a conducive learning environment.',
+  },
+  {
+    src: '/images/choose-us/choose-us-3.png',
+    title: 'Scholarship Opportunities',
+    description:
+      'FUTES offers various scholarship programs to support students financially, ensuring that talented individuals have access to quality education regardless of their financial background.',
+  },
+  {
+    src: '/images/choose-us/choose-us-4.png',
+    title: 'Strong Community',
+    description:
+      'FUTES fosters a strong sense of community among students, faculty, and alumni. Our active alumni network provides mentorship, career opportunities, and a platform for lifelong connections.',
+  },
+  {
+    src: '/images/choose-us/choose-us-5.png',
+    title: 'Serene Environment',
+    description:
+      'Nestled in the peaceful town of Iyin, Ekiti State, FUTES offers a serene and inspiring environment that promotes focus and academic excellence.',
+  },
+  {
+    src: '/images/choose-us/choose-us-6.png',
+    title: 'Academic Excellence',
+    description:
+      'FUTES is committed to academic excellence, with a dedicated faculty and a track record of producing graduates who excel in their careers and contribute meaningfully to society.',
+  },
+];

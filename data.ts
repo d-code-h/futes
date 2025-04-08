@@ -1,3 +1,14 @@
+import {
+  Award,
+  CalendarDays,
+  CircleHelp,
+  GraduationCap,
+  Library,
+  PlaneTakeoff,
+  User,
+} from 'lucide-react';
+import { createElement } from 'react';
+
 export const gists = [
   {
     src: '/images/gists/gist-1.png',
@@ -83,5 +94,43 @@ export const courses = [
   {
     title: 'Environmental Robotics',
     href: '#',
+  },
+];
+
+export const aboutLinks = [
+  {
+    icon: createElement(GraduationCap),
+    href: '/apply',
+    title: 'Apply',
+  },
+  {
+    icon: createElement(PlaneTakeoff),
+    href: '/visit-campus',
+    title: 'Visit Campus',
+  },
+  {
+    icon: createElement(User),
+    href: '/student',
+    title: 'Student',
+  },
+  {
+    icon: createElement(Library),
+    href: '/library',
+    title: 'Library',
+  },
+  {
+    icon: createElement(Award),
+    href: '/scholarship',
+    title: 'Scholarship',
+  },
+  {
+    icon: createElement(CalendarDays),
+    href: '/events',
+    title: 'Events',
+  },
+  {
+    icon: createElement(CircleHelp),
+    href: '/faq',
+    title: 'FAQ',
   },
 ];

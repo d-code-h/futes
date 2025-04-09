@@ -24,12 +24,7 @@ interface Props {
 
 const PostCard = ({ data }: Props) => {
   return (
-    <Card
-      className="p-0 w-full 
-     sm:w-[270px] md:w-[350px] 
-     lg:min-w-[300px]  
-    text-center"
-    >
+    <Card className="p-0 w-full text-center">
       <Image
         src={data.src}
         alt={data.title}

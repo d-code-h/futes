@@ -7,7 +7,7 @@ export const ChooseUs = () => {
   return (
     <Container className="bg-primary/75 text-white">
       <section>
-        <h2 className="font-semibold text-center text-4xl tracking-wider">
+        <h2 className="font-semibold text-center text-4xl tracking-wider my-5">
           Why Choose FUTES?
         </h2>
 

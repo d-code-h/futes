@@ -25,18 +25,16 @@ const AboutUs = () => {
           About Us
         </h4>
         <p>
-          Covenant University is a growing, dynamic vision-driven University,
-          founded on a Christian mission ethos and committed to pioneering
-          excellence at the cutting edge of learning. We run with a compelling
-          vision of raising a new generation of leaders for the African
-          continent. We are doing this on a holistic, human development and
-          integrated learning curriculum to raise total Men and Women who will
-          develop their world.
+          FUTES, located in Iyin Ekiti, is a forward-thinking organization
+          dedicated to fostering innovation and excellence in technology and
+          education. Our mission is to empower individuals and communities
+          through cutting-edge solutions and transformative learning
+          experiences.
         </p>
         <p>
-          Our Core-Values of Spirituality, Possibility Mentality, Capacity
-          Building, Integrity, Responsibility, Diligence, and Sacrifice are what
-          defines our commitment to excellence.
+          At FUTES, we are guided by our Core Values of Innovation, Integrity,
+          Collaboration, Excellence, and Community Impact. These values drive
+          our commitment to creating a brighter future for everyone we serve.
         </p>
 
         <div className="flex justify-center md:justify-start">

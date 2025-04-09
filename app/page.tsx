@@ -3,6 +3,7 @@ import CarouselSlides from '@/components/CarouselSlides';
 import { ChooseUs } from '@/components/ChooseUs';
 import Departments from '@/components/Departments';
 import Gists from '@/components/Gists';
+import { News } from '@/components/News';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Departments />
       <AboutUs />
       <ChooseUs />
+      <News />
     </>
   );
 }

@@ -173,3 +173,43 @@ export const chooseUsData = [
       'FUTES is committed to academic excellence, with a dedicated faculty and a track record of producing graduates who excel in their careers and contribute meaningfully to society.',
   },
 ];
+
+export const news = [
+  {
+    src: '/images/news/news-1.png',
+    title: 'FUTES Hosts Annual Technology Summit in Iyin Ekiti',
+    date: 'Oct 10, 2025',
+    views: 320,
+  },
+  {
+    src: '/images/news/news-2.png',
+    title: 'Iyin Ekiti Celebrates Innovation Week with FUTES Collaboration',
+    date: 'Sep 15, 2025',
+    views: 275,
+  },
+  {
+    src: '/images/news/news-3.png',
+    title: 'FUTES Partners with Local Entrepreneurs to Boost Tech Startups',
+    date: 'Nov 05, 2025',
+    views: 410,
+  },
+];
+
+export const statistics = [
+  {
+    count: 20.0,
+    description: 'FUTES Hosts Annual Technology Summit in Iyin Ekiti',
+  },
+  {
+    count: 85,
+    description: 'Percentage of Employed Graduates',
+  },
+  {
+    count: 56.36,
+    description: 'Student Ratio of Females to Males',
+  },
+  {
+    count: 8644,
+    description: 'Number of FTE Students',
+  },
+];

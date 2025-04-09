@@ -9,6 +9,44 @@ import {
 } from 'lucide-react';
 import { createElement } from 'react';
 
+export const slides = [
+  {
+    screen:
+      'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Slide 1',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+  {
+    screen:
+      'https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Slide 2',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+  {
+    screen:
+      'https://images.unsplash.com/photo-1705727210721-961cc64a6895?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Slide 3',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+  {
+    screen:
+      'https://images.unsplash.com/photo-1592280771190-3e2e4d571952?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Slide 4',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+  {
+    screen:
+      'https://images.unsplash.com/photo-1602052577122-f73b9710adba?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Slide 5',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+];
+
 export const gists = [
   {
     src: '/images/gists/gist-1.png',
@@ -171,5 +209,45 @@ export const chooseUsData = [
     title: 'Academic Excellence',
     description:
       'FUTES is committed to academic excellence, with a dedicated faculty and a track record of producing graduates who excel in their careers and contribute meaningfully to society.',
+  },
+];
+
+export const news = [
+  {
+    src: '/images/news/news-1.png',
+    title: 'FUTES Hosts Annual Technology Summit in Iyin Ekiti',
+    date: 'Oct 10, 2025',
+    views: 320,
+  },
+  {
+    src: '/images/news/news-2.png',
+    title: 'Iyin Ekiti Celebrates Innovation Week with FUTES Collaboration',
+    date: 'Sep 15, 2025',
+    views: 275,
+  },
+  {
+    src: '/images/news/news-3.png',
+    title: 'FUTES Partners with Local Entrepreneurs to Boost Tech Startups',
+    date: 'Nov 05, 2025',
+    views: 410,
+  },
+];
+
+export const statistics = [
+  {
+    count: 20.0,
+    description: 'FUTES Hosts Annual Technology Summit in Iyin Ekiti',
+  },
+  {
+    count: 85,
+    description: 'Percentage of Employed Graduates',
+  },
+  {
+    count: 56.36,
+    description: 'Student Ratio of Females to Males',
+  },
+  {
+    count: 8644,
+    description: 'Number of FTE Students',
   },
 ];

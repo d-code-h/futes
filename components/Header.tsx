@@ -202,55 +202,36 @@ const Nav = ({ type }: { type: 'MD' | 'LG' }) => {
 
 const SubMenu = ({ menu }: { menu: LinkType[] }) => {
   return (
-    <Accordion type="single" collapsible className="w-full">
-      {menu.map(({ name, href, subMenu }: LinkType) => (
-        <div key={name}>
-          <AccordionItem value="item-1" className="border-none">
-            <div className="flex items-center gap-1">
-              <ChevronRight
-                style={{
-                  width: '16px',
-                  height: '16px',
-                }}
-              />
+    <div className="pl-2 border-l border-muted">
+      {menu.map(({ name, href, subMenu }, index) => {
+        const itemId = `${name}-${index}`.toLowerCase().replace(/\s+/g, '-');
 
-              <AccordionTrigger>
-                <Link
-                  href={href}
-                  className="text-lg font-medium hover:underline uppercase"
-                >
+        return subMenu ? (
+          <Accordion type="single" collapsible className="w-full" key={itemId}>
+            <AccordionItem value={itemId} className="border-none">
+              <AccordionTrigger className="flex items-center gap-2">
+                <ChevronRight className="w-4 h-4 shrink-0" />
+                <span className="text-lg font-medium  hover:underline">
                   {name}
-                </Link>
+                </span>
               </AccordionTrigger>
-            </div>
-            <AccordionContent>
-              <nav className="flex flex-col gap-2 mt-4">
-                {subMenu ? (
-                  <div>
-                    {Array.isArray(subMenu) && <SubMenu menu={subMenu} />}
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-1">
-                    <ChevronRight
-                      style={{
-                        width: '16px',
-                        height: '16px',
-                      }}
-                    />
-                    <Link
-                      href={href}
-                      className="text-lg font-medium hover:underline uppercase"
-                    >
-                      {name}
-                    </Link>
-                  </div>
-                )}
-              </nav>
-            </AccordionContent>
-          </AccordionItem>
-        </div>
-      ))}
-    </Accordion>
+              <AccordionContent className="pl-4">
+                <SubMenu menu={subMenu} />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        ) : (
+          <Link
+            key={itemId}
+            href={href}
+            className="flex items-center gap-2 py-1 text-lg font-medium  hover:underline"
+          >
+            <ChevronRight className="w-4 h-4 shrink-0" />
+            {name}
+          </Link>
+        );
+      })}
+    </div>
   );
 };
 

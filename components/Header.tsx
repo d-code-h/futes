@@ -19,7 +19,7 @@ interface LinkType {
 const navLinks = [
   { name: 'Home', href: '/' },
   {
-    name: 'About ',
+    name: 'About',
     href: '/about',
     subMenu: [
       {
@@ -148,8 +148,9 @@ function Dropdown({ items, depth = 0 }: { items: LinkType; depth?: number }) {
   return (
     <div
       className="relative group"
-      onMouseEnter={handleMouseEnter} // Open immediately on hover
-      onMouseLeave={handleMouseLeave} // Close after delay on mouse leave
+      onMouseEnter={!('ontouchstart' in window) ? handleMouseEnter : undefined} // Open immediately on hover for non-touch devices
+      onMouseLeave={!('ontouchstart' in window) ? handleMouseLeave : undefined} // Close after delay on mouse leave for non-touch devices
+      onClick={'ontouchstart' in window ? () => setOpen(!open) : undefined} // Toggle on click for touch devices
     >
       <button
         className={cn(navigationMenuTriggerStyle)}

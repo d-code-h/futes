@@ -36,7 +36,7 @@ const PostCard = ({ data }: Props) => {
         className="w-full h-full"
       />
 
-      <div className="md:mx-5 m-0 mb-3">
+      <div className="md:mx-5 m-0 mb-8">
         {data.date && (
           <p className=" text-gray-400 flex gap-1 items-center text-left p-5">
             <Clock

@@ -339,12 +339,18 @@ const Header = () => {
                             height: '16px',
                           }}
                         />
-                        <Link
-                          href={link.href}
-                          className="text-lg font-medium hover:underline uppercase"
-                        >
-                          {link.name}
-                        </Link>
+                        {link.subMenu ? (
+                          <span className="text-lg font-medium hover:underline uppercase">
+                            {link.name}
+                          </span>
+                        ) : (
+                          <Link
+                            href={link.href}
+                            className="text-lg font-medium hover:underline uppercase"
+                          >
+                            {link.name}
+                          </Link>
+                        )}
                       </div>
                       {link.subMenu && (
                         <SubMenu

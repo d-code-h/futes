@@ -36,7 +36,7 @@ const PostCard = ({ data }: Props) => {
         className="w-full h-full"
       />
 
-      <div className="md:mx-5 m-0 mb-8 ">
+      <div className="md:mx-5 m-0 mb-3">
         {data.date && (
           <p className=" text-gray-400 flex gap-1 items-center text-left p-5">
             <Clock
@@ -72,15 +72,14 @@ const PostCard = ({ data }: Props) => {
                 </Link>
               </Button>
             )}
+            {data?.views && (
+              <div className=" w-fit ms-auto flex items-center justify-end gap-1 text-gray-400 mt-5">
+                <Eye />
+                <p>{data.views}</p>
+              </div>
+            )}
           </CardFooter>
         </div>
-
-        {data?.views && (
-          <div className=" w-fit ms-auto flex items-center justify-end gap-1 text-gray-400">
-            <Eye />
-            <p>{data.views}</p>
-          </div>
-        )}
       </div>
     </Card>
   );

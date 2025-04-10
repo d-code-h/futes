@@ -3,31 +3,12 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
-import { ChevronRight, Menu } from 'lucide-react';
+import { ChevronDown, ChevronRight, ChevronUp, Menu } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { DialogTitle } from '@radix-ui/react-dialog';
 import { cn } from '@/lib/utils';
-
-// Accordion
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-
-// Dropdown menu of Desktop
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu';
 
 interface LinkType {
   name: string;
@@ -145,93 +126,87 @@ const navLinks = [
 
 const Nav = ({ type }: { type: 'MD' | 'LG' }) => {
   return (
-    <NavigationMenu
+    <nav
       className={cn(
         'gap-8',
         type === 'MD'
-          ? 'hidden md:flex lg:hidden mx-auto my-8'
+          ? 'hidden md:flex lg:hidden mx-auto my-8 justify-center'
           : 'hidden lg:flex ms-auto',
       )}
     >
-      <NavigationMenuList>
-        {navLinks.map((link) => {
-          if (link.subMenu) {
-            return (
-              <NavigationMenuItem key={link.name}>
-                <NavigationMenuTrigger>{link.name}</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  {link.subMenu.map((menu) => (
+      {navLinks.map((link) => (
+        <div key={link.name} className="relative group">
+          <Link
+            href={link.href}
+            className="font-medium hover:text-blue-600 flex items-center gap-1 group"
+          >
+            {link.name}
+            {link.subMenu && (
+              <>
+                <ChevronDown
+                  style={{
+                    width: '18px',
+                    height: '18px',
+                  }}
+                  className="group-hover:hidden"
+                />
+                <ChevronUp
+                  style={{
+                    width: '18px',
+                    height: '18px',
+                  }}
+                  className="hidden group-hover:flex"
+                />
+              </>
+            )}
+          </Link>
+          {link.subMenu && (
+            <div className="absolute top-full left-0 bg-white shadow-md mt-2 hidden group-hover:block z-10">
+              <ul className="p-4 w-60">
+                {link.subMenu.map((sub) => (
+                  <li key={sub.name} className="mb-2">
                     <Link
-                      key={menu.name}
-                      className="text-sm font-medium hover:text-primary transition"
-                      href={menu.href}
-                      legacyBehavior
-                      passHref
+                      href={sub.href}
+                      className="block font-medium hover:underline"
                     >
-                      <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                      >
-                        {menu.name}
-                      </NavigationMenuLink>
+                      {sub.name}
                     </Link>
-                  ))}
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            );
-          } else {
-            return (
-              <NavigationMenuItem key={link.name}>
-                <Link
-                  href={link.href}
-                  className="text-sm font-medium hover:text-primary transition"
-                  legacyBehavior
-                  passHref
-                >
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    {link.name}
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            );
-          }
-        })}
-      </NavigationMenuList>
-    </NavigationMenu>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      ))}
+    </nav>
   );
 };
 
 const SubMenu = ({ menu }: { menu: LinkType[] }) => {
   return (
-    <div className="pl-2 border-l border-muted">
-      {menu.map(({ name, href, subMenu }, index) => {
-        const itemId = `${name}-${index}`.toLowerCase().replace(/\s+/g, '-');
-
-        return subMenu ? (
-          <Accordion type="single" collapsible className="w-full" key={itemId}>
-            <AccordionItem value={itemId} className="border-none">
-              <AccordionTrigger className="flex items-center gap-2">
-                <ChevronRight className="w-4 h-4 shrink-0" />
-                <span className="text-lg font-medium  hover:underline">
-                  {name}
-                </span>
-              </AccordionTrigger>
-              <AccordionContent className="pl-4">
-                <SubMenu menu={subMenu} />
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        ) : (
-          <Link
-            key={itemId}
-            href={href}
-            className="flex items-center gap-2 py-1 text-lg font-medium  hover:underline"
-          >
-            <ChevronRight className="w-4 h-4 shrink-0" />
-            {name}
-          </Link>
-        );
-      })}
-    </div>
+    <ul className="ml-4 border-l border-gray-300 pl-2">
+      {menu.map((item) => (
+        <li key={item.name} className="py-1">
+          {item.subMenu ? (
+            <>
+              <span className="font-semibold flex items-center">
+                <ChevronRight className="w-4 h-4 mr-1" />
+                {item.name}
+              </span>
+              <SubMenu menu={item.subMenu} />
+            </>
+          ) : (
+            <Link
+              href={item.href}
+              className="hover:underline flex items-center"
+            >
+              <ChevronRight className="w-4 h-4 mr-1" />
+              {item.name}
+            </Link>
+          )}
+        </li>
+      ))}
+    </ul>
   );
 };
 
@@ -255,7 +230,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Screen Navigation */}
         <Nav type="LG" />
 
         {/* Mobile Menu */}
@@ -316,7 +291,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Desktop Navigation */}
+      {/* Medium Screen Navigation */}
       <Nav type="MD" />
     </header>
   );

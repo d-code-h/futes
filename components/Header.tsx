@@ -3,12 +3,20 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
-import { ChevronDown, ChevronRight, ChevronUp, Menu } from 'lucide-react';
+import { ChevronDownIcon, ChevronRight, Menu } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { DialogTitle } from '@radix-ui/react-dialog';
 import { cn } from '@/lib/utils';
+
+// Accordion
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 interface LinkType {
   name: string;
@@ -124,89 +132,128 @@ const navLinks = [
   { name: 'Research & Teaching', href: '/research-teaching' },
 ];
 
-const Nav = ({ type }: { type: 'MD' | 'LG' }) => {
+const navigationMenuTriggerStyle =
+  'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[open]:bg-accent/50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1';
+
+function Dropdown({ items, depth = 0 }: { items: LinkType; depth?: number }) {
+  const [open, setOpen] = useState(false);
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null); // Store timeout ID
+
+  const handleMouseEnter = () => {
+    if (timeoutId) {
+      clearTimeout(timeoutId); // Clear any existing timeout
+    }
+    setOpen(true); // Open immediately on hover
+  };
+
+  const handleMouseLeave = () => {
+    const newTimeoutId = setTimeout(() => {
+      setOpen(false); // Close after a short delay
+    }, 200); // Adjust the time delay as needed (e.g., 200ms)
+    setTimeoutId(newTimeoutId); // Store the new timeout ID
+  };
+
+  return (
+    <div
+      className="relative group"
+      onMouseEnter={handleMouseEnter} // Open immediately on hover
+      onMouseLeave={handleMouseLeave} // Close after delay on mouse leave
+    >
+      <button
+        className={cn(navigationMenuTriggerStyle)}
+        onClick={() => setOpen(!open)}
+      >
+        {items.name}
+        {items.subMenu && (
+          <ChevronDownIcon className="ml-1 size-3 transition duration-300 group-data-[open]:rotate-180" />
+        )}
+      </button>
+      {items.subMenu && open && (
+        <div
+          className={cn(
+            'absolute top-full mt-2 rounded-md bg-popover border shadow z-50 min-w-[200px] p-2 text-popover-foreground',
+            depth > 0 ? 'left-full top-0 ml-1' : 'left-0',
+          )}
+          onMouseEnter={handleMouseEnter} // Keep open when mouse enters the dropdown
+          onMouseLeave={handleMouseLeave} // Close after delay when mouse leaves the dropdown
+        >
+          {items.subMenu.map((subItem) => (
+            <div key={subItem.name} className="relative">
+              {subItem.subMenu ? (
+                <Dropdown items={subItem} depth={depth + 1} />
+              ) : (
+                <Link
+                  href={subItem.href}
+                  className="block px-4 py-2 text-sm rounded-sm hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                >
+                  {subItem.name}
+                </Link>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function Nav({ type }: { type: 'MD' | 'LG' }) {
   return (
     <nav
       className={cn(
-        'gap-8',
+        'flex flex-wrap gap-8',
         type === 'MD'
-          ? 'hidden md:flex lg:hidden mx-auto my-8 justify-center'
+          ? 'hidden md:flex lg:hidden mx-auto justify-center gap-6 my-8'
           : 'hidden lg:flex ms-auto',
       )}
     >
       {navLinks.map((link) => (
-        <div key={link.name} className="relative group">
-          <Link
-            href={link.href}
-            className="font-medium hover:text-blue-600 flex items-center gap-1 group"
-          >
-            {link.name}
-            {link.subMenu && (
-              <>
-                <ChevronDown
-                  style={{
-                    width: '18px',
-                    height: '18px',
-                  }}
-                  className="group-hover:hidden"
-                />
-                <ChevronUp
-                  style={{
-                    width: '18px',
-                    height: '18px',
-                  }}
-                  className="hidden group-hover:flex"
-                />
-              </>
-            )}
-          </Link>
-          {link.subMenu && (
-            <div className="absolute top-full left-0 bg-white shadow-md mt-2 hidden group-hover:block z-10">
-              <ul className="p-4 w-60">
-                {link.subMenu.map((sub) => (
-                  <li key={sub.name} className="mb-2">
-                    <Link
-                      href={sub.href}
-                      className="block font-medium hover:underline"
-                    >
-                      {sub.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <div key={link.name}>
+          {link.subMenu ? (
+            <Dropdown items={link} />
+          ) : (
+            <Link href={link.href} className={cn(navigationMenuTriggerStyle)}>
+              {link.name}
+            </Link>
           )}
         </div>
       ))}
     </nav>
   );
-};
+}
 
 const SubMenu = ({ menu }: { menu: LinkType[] }) => {
   return (
-    <ul className="ml-4 border-l border-gray-300 pl-2">
-      {menu.map((item) => (
-        <li key={item.name} className="py-1">
-          {item.subMenu ? (
-            <>
-              <span className="font-semibold flex items-center">
-                <ChevronRight className="w-4 h-4 mr-1" />
-                {item.name}
-              </span>
-              <SubMenu menu={item.subMenu} />
-            </>
-          ) : (
-            <Link
-              href={item.href}
-              className="hover:underline flex items-center"
-            >
-              <ChevronRight className="w-4 h-4 mr-1" />
-              {item.name}
-            </Link>
-          )}
-        </li>
-      ))}
-    </ul>
+    <div className="pl-2 border-l border-muted">
+      {menu.map(({ name, href, subMenu }, index) => {
+        const itemId = `${name}-${index}`.toLowerCase().replace(/\s+/g, '-');
+
+        return subMenu ? (
+          <Accordion type="single" collapsible className="w-full" key={itemId}>
+            <AccordionItem value={itemId} className="border-none">
+              <AccordionTrigger className="flex items-center gap-2">
+                <ChevronRight className="w-4 h-4 shrink-0" />
+                <span className="text-lg font-medium  hover:underline">
+                  {name}
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="pl-4">
+                <SubMenu menu={subMenu} />
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        ) : (
+          <Link
+            key={itemId}
+            href={href}
+            className="flex items-center gap-2 py-1 text-lg font-medium  hover:underline"
+          >
+            <ChevronRight className="w-4 h-4 shrink-0" />
+            {name}
+          </Link>
+        );
+      })}
+    </div>
   );
 };
 
@@ -230,7 +277,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Desktop Screen Navigation */}
+        {/* Desktop Navigation */}
         <Nav type="LG" />
 
         {/* Mobile Menu */}
@@ -291,7 +338,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Medium Screen Navigation */}
+      {/* Desktop Navigation */}
       <Nav type="MD" />
     </header>
   );

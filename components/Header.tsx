@@ -3,20 +3,12 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
-import { ChevronDownIcon, ChevronRight, Menu } from 'lucide-react';
+import { ChevronDownIcon, ChevronRight, Menu, Minus, Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { DialogTitle } from '@radix-ui/react-dialog';
 import { cn } from '@/lib/utils';
-
-// Accordion
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
 
 interface LinkType {
   name: string;
@@ -27,7 +19,7 @@ interface LinkType {
 const navLinks = [
   { name: 'Home', href: '/' },
   {
-    name: 'About',
+    name: 'About ',
     href: '/about',
     subMenu: [
       {
@@ -222,43 +214,71 @@ export function Nav({ type }: { type: 'MD' | 'LG' }) {
   );
 }
 
-const SubMenu = ({ menu }: { menu: LinkType[] }) => {
+const SubMenu = ({
+  menu,
+  openSubMenu,
+  toggleSubMenu,
+}: {
+  menu: LinkType[];
+  openSubMenu: string | null;
+  toggleSubMenu: (itemId: string) => void;
+}) => {
   return (
     <div className="pl-2 border-l border-muted">
-      {menu.map(({ name, href, subMenu }, index) => {
+      {menu.map(({ name, subMenu }, index) => {
         const itemId = `${name}-${index}`.toLowerCase().replace(/\s+/g, '-');
 
-        return subMenu ? (
-          <Accordion type="single" collapsible className="w-full" key={itemId}>
-            <AccordionItem value={itemId} className="border-none">
-              <AccordionTrigger className="flex items-center gap-2">
+        return (
+          <div key={itemId}>
+            {/* Main menu item */}
+            <div
+              className="flex items-center justify-between cursor-pointer py-1 text-lg font-medium hover:underline"
+              onClick={() => toggleSubMenu(itemId)}
+            >
+              <div className="flex items-center gap-2">
                 <ChevronRight className="w-4 h-4 shrink-0" />
-                <span className="text-lg font-medium  hover:underline">
-                  {name}
-                </span>
-              </AccordionTrigger>
-              <AccordionContent className="pl-4">
-                <SubMenu menu={subMenu} />
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        ) : (
-          <Link
-            key={itemId}
-            href={href}
-            className="flex items-center gap-2 py-1 text-lg font-medium  hover:underline"
-          >
-            <ChevronRight className="w-4 h-4 shrink-0" />
-            {name}
-          </Link>
+                {name}
+              </div>
+              <div>
+                {openSubMenu === itemId ? (
+                  <Minus className="w-4 h-4" />
+                ) : subMenu ? (
+                  <Plus className="w-4 h-4" />
+                ) : null}
+              </div>
+            </div>
+
+            {/* Submenu */}
+            <div
+              className={`transition-all duration-500 ${
+                openSubMenu === itemId
+                  ? 'max-h-[1000px] overflow-visible'
+                  : 'max-h-0 overflow-hidden'
+              }`}
+            >
+              {openSubMenu === itemId && subMenu && (
+                <div className="pl-4">
+                  <SubMenu
+                    menu={subMenu}
+                    openSubMenu={openSubMenu}
+                    toggleSubMenu={toggleSubMenu}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
         );
       })}
     </div>
   );
 };
-
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [openSubMenu, setOpenSubMenu] = useState<string | null>(null);
+
+  const toggleSubMenu = (itemId: string) => {
+    setOpenSubMenu(openSubMenu === itemId ? null : itemId); // Toggle submenu
+  };
 
   return (
     <header>
@@ -286,7 +306,7 @@ const Header = () => {
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
                 <Button
-                  className="p-6 focus:ring-0 focus:outline-none "
+                  className="p-6 focus:ring-0 focus:outline-none"
                   variant="ghost"
                   size="icon"
                 >
@@ -303,7 +323,7 @@ const Header = () => {
               </SheetTrigger>
               <SheetContent
                 side="right"
-                className="bg-primary text-white w-64 p-6 overflow-y-auto"
+                className="bg-primary text-white w-64 p-6 overflow-y-auto transition-all"
               >
                 <VisuallyHidden>
                   <h2>Navigation Menu</h2>
@@ -311,23 +331,26 @@ const Header = () => {
                 <nav className="flex flex-col gap-2 mt-4">
                   {navLinks.map((link) => (
                     <div key={link.name}>
-                      {link.subMenu ? (
-                        <SubMenu menu={link.subMenu} />
-                      ) : (
-                        <div className="flex items-center gap-1">
-                          <ChevronRight
-                            style={{
-                              width: '16px',
-                              height: '16px',
-                            }}
-                          />
-                          <Link
-                            href={link.href}
-                            className="text-lg font-medium hover:underline uppercase"
-                          >
-                            {link.name}
-                          </Link>
-                        </div>
+                      <div className="flex items-center gap-1">
+                        <ChevronRight
+                          style={{
+                            width: '16px',
+                            height: '16px',
+                          }}
+                        />
+                        <Link
+                          href={link.href}
+                          className="text-lg font-medium hover:underline uppercase"
+                        >
+                          {link.name}
+                        </Link>
+                      </div>
+                      {link.subMenu && (
+                        <SubMenu
+                          menu={link.subMenu}
+                          openSubMenu={openSubMenu}
+                          toggleSubMenu={toggleSubMenu}
+                        />
                       )}
                     </div>
                   ))}

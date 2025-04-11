@@ -148,9 +148,8 @@ function Dropdown({ items, depth = 0 }: { items: LinkType; depth?: number }) {
   return (
     <div
       className="relative group"
-      onMouseEnter={!('ontouchstart' in window) ? handleMouseEnter : undefined} // Open immediately on hover for non-touch devices
-      onMouseLeave={!('ontouchstart' in window) ? handleMouseLeave : undefined} // Close after delay on mouse leave for non-touch devices
-      onClick={'ontouchstart' in window ? () => setOpen(!open) : undefined} // Toggle on click for touch devices
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <button
         className={cn(navigationMenuTriggerStyle)}

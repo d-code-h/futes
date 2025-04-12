@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-gray-700 py-8">
+    <footer className="bg-primary  text-white py-8">
       <div className="container mx-auto px-4">
         {/* Contact Information */}
         <div className="text-center mb-6">
@@ -144,7 +144,7 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="mt-8 text-center text-sm text-gray-500">
+        <div className="mt-8 text-center text-sm text-gray-300">
           <p>
             &copy; {new Date().getFullYear()} FUTES, Iyin, Ekiti State. All
             rights reserved.

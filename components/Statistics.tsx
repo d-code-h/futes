@@ -6,7 +6,7 @@ export const Statistics = () => {
   return (
     <Container className="bg-primary/45 text-black">
       <section>
-        <h2 className="font-bold text-center text-4xl tracking-wider my-5 text-primary">
+        <h2 className="font-bold text-center text-4xl tracking-wider my-8 text-primary">
           Key Statistics
         </h2>
 

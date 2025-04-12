@@ -64,7 +64,7 @@ const PostCard = ({ data }: Props) => {
           </CardContent>
           <CardFooter>
             {data?.btn && (
-              <Button className="mx-auto text-md py-5 uppercase">
+              <Button className="mx-auto text-md mt-5 py-5 uppercase">
                 <Link className="flex items-center gap-1" href={data.btn.href}>
                   <span>{data.btn?.text}</span>
 

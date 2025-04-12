@@ -7,21 +7,21 @@ import { ChevronRight } from 'lucide-react';
 
 const AboutUs = () => {
   return (
-    <div className="flex flex-col md:flex-row gap-6 px-4 md:px-10 py-8">
+    <div className="flex flex-col md:flex-row gap-6 px-4 md:px-10 py-8 md:py-12">
       {/* Image Section */}
-      <div className="flex justify-center md:justify-start md:w-1/3">
+      <div className="flex justify-center md:justify-start items-center md:w-1/3">
         <Image
           src="/icons/logo.png"
           alt="Logo"
           width={300}
           height={300}
-          className="w-44 h-44 md:w-full md:h-auto object-contain"
+          className="w-44 h-44 md:w-full md:h-96 object-contain"
         />
       </div>
 
       {/* Content Section */}
       <section className="space-y-5 md:w-2/3">
-        <h4 className="text-primary uppercase tracking-wide font-bold">
+        <h4 className="text-primary text-2xl md:text-4xl uppercase tracking-wide font-bold">
           About Us
         </h4>
         <p>

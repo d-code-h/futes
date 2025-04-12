@@ -14,7 +14,7 @@ const Core: React.FC<{ type: 'vision' | 'mission' }> = ({ type }) => {
   const { core } = aboutUniversity;
   return (
     <>
-      <section className="mb-8">
+      <section className="mb-8 max-sm:px-5">
         <h2 className="text-2xl font-semibold mb-2 text-primary">
           {core[type].title}
         </h2>
@@ -95,11 +95,11 @@ const Page: React.FC = () => {
             alt="FUTES Campus"
             width={600}
             height={600}
-            className="w-full md:w-1/2 h-auto rounded-lg mb-8"
+            className="w-full md:w-1/2 h-auto rounded-lg"
           />
 
           <section className="text-center md:text-left">
-            <h2 className="font-bold text-4xl tracking-wider my-5 text-primary">
+            <h2 className="font-bold text-4xl tracking-wider mb-5 md:my-5 text-primary">
               {introduction.title}
             </h2>
             {introduction.description.map((item, index) => (
@@ -121,21 +121,20 @@ const Page: React.FC = () => {
         <h2 className="text-4xl font-semibold my-5">{philosophy.title}</h2>
         <p className="max-w-[500px] mx-auto">{philosophy.description}</p>
 
-        <div className="flex flex-wrap gap-4 justify-center mt-8 md:w-3/4 lg:w-10/12 md:mx-auto">
+        <div className="flex flex-wrap gap-4 justify-center mt-8 md:w-3/4 lg:w-11/12 md:mx-auto">
           {philosophy.facts.map((fact, index) => (
-            <div
-              className="relative border w-full md:w-1/3 lg:w-1/4"
-              key={index}
-            >
+            <div className="relative  w-fit md:w-4/12 lg:w-1/4" key={index}>
               <Image
                 src={fact.src}
                 alt={`Founding philosophy ${index + 1}`}
-                width={400}
-                height={400}
-                className="rounded-lg"
+                width={700}
+                height={700}
+                className="rounded-lg w-full h-auto object-cover"
               />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-black p-6 rounded-lg shadow-md w-10/12 md:w-72">
-                <h5 className="text-2xl">{fact.title}</h5>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-black max-sm:p-6 p-3 rounded-lg shadow-md w-10/12 max-w-[300px] text-center">
+                <h5 className="text-2xl md:text-base lg:text-xl">
+                  {fact.title}
+                </h5>
               </div>
             </div>
           ))}
@@ -143,11 +142,11 @@ const Page: React.FC = () => {
       </section>
 
       <div className="flex flex-col md:flex-row gap-4 lg:gap-8 md:w-3/4 lg:w-1/2 md:mx-auto">
-        <section className="mb-8">
+        <section className="mb-8 px-5">
           <h2 className="text-2xl font-semibold mb-2 text-primary">
             {objectives.title}
           </h2>
-          <p>{objectives.description}</p>
+          <p className="my-3">{objectives.description}</p>
           <ol className="pl-6 list-decimal">
             {objectives.list.map((item, index) => (
               <li key={index} className="mb-2">
@@ -157,11 +156,11 @@ const Page: React.FC = () => {
           </ol>
         </section>
 
-        <section className="mb-8">
+        <section className="mb-8 px-5">
           <h2 className="text-2xl font-semibold mb-2 text-primary">
             {values.title}
           </h2>
-          <p>{values.description}</p>
+          <p className="my-3">{values.description}</p>
           <Accordion type="single" collapsible className="w-full">
             {values.list.map((item, index) => (
               <AccordionItem value={`item-${index}`} key={index}>

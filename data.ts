@@ -290,10 +290,10 @@ export const aboutUniversity = {
     src: '/icons/logo.png',
     title: 'About the University',
     description: [
-      'Covenant University is a private Christian University, which has been operating with official status since 2002 in Ota, Ogun State, Nigeria.',
-      "Covenant University is one of the leading universities in Africa found on Christian mission ethos. She drives a vision to raise a new generation of leaders and reinstate the black race's dignity;.",
-      'The university has four colleges which includes: The College of Business and Social Sciences; College of Leadership and Development Studies; College of Engineering, and the College of Science and Technology.',
-      'Covenant University has had a rapid rise in nearly two decades of its existence. The webometric ranking named Covenant University the best Private University in Nigeria in its 2021 ranking and the second best university overall.',
+      'FUTES, the Federal University of Technology and Environmental Sciences, is a newly established institution located in Iyin, Ekiti State, Nigeria.',
+      'FUTES is dedicated to advancing technology and environmental sciences, fostering innovation, and raising a new generation of leaders equipped to address global challenges.',
+      'The university offers a wide range of programs across various disciplines, with a strong emphasis on sustainability, innovation, and community development.',
+      'FUTES is committed to providing a world-class education, modern facilities, and a serene environment that promotes academic excellence and personal growth.',
     ],
   },
   core: {
@@ -305,13 +305,13 @@ export const aboutUniversity = {
     mission: {
       title: 'Mission',
       description:
-        'To be a world-class university committed to advancing technology and environmental sciences, raising a new generation of leaders equipped to address global challenges.',
+        'To provide quality education, foster innovation, and promote sustainable practices while addressing the technological and environmental needs of society.',
     },
   },
   values: {
     title: 'Our Core Values',
     description:
-      'Our core values are the defining components of the FUTES vision. They reflect our beliefs in the encrypted truths that firmly define our purpose and the underlining ethos of our existence as a University in Iyin, Ekiti State.',
+      'Our core values are the defining components of the FUTES vision. They reflect our beliefs in the principles that guide our purpose and existence as a University in Iyin, Ekiti State.',
     list: [
       {
         title: 'Innovation',
@@ -359,10 +359,11 @@ export const aboutUniversity = {
     title: 'Our Objectives',
     description: 'Our objectives as a University are to:',
     list: [
-      'Provide facilities for learning and give instructions and training in such areas of knowledge that will produce sound and mentally equipped graduates, who will provide intellectual leadership in academic institutions, industry, and the public sector through the Total Man Concept approach;',
-      'Develop and offer academic and professional programmes leading to the award of diplomas, first degrees, and higher degrees, which emphasize planning, adaptive and technological maintenance, developmental and productive skills; promote by research and other means, the advancement of knowledge and its practical;',
-      'Application to social, cultural, economic, scientific, and technological problems; Encourage and promote scholarship and conduct research in all fields of learning and human endeavour;',
-      'Disseminate scientific and technological knowledge among scientists, researchers, industries, trade services, and other bodies; and',
+      'Provide facilities for learning and give instructions and training in such areas of knowledge that will produce sound and mentally equipped graduates, who will provide intellectual leadership in academic institutions, industry, and the public sector;',
+      'Develop and offer academic and professional programs leading to the award of diplomas, first degrees, and higher degrees, which emphasize planning, adaptive and technological maintenance, developmental and productive skills;',
+      'Promote research and the advancement of knowledge with practical applications to social, cultural, economic, scientific, and technological challenges;',
+      'Encourage and promote scholarship and conduct research in all fields of learning and human endeavor;',
+      'Disseminate scientific and technological knowledge among scientists, researchers, industries, trade services, and other bodies;',
       "Relate its activities to Nigeria's technological, scientific, and socio-economic needs, with a special focus on the development of Iyin, Ekiti State, and undertake other activities appropriate for a university of the highest standard.",
     ],
   },

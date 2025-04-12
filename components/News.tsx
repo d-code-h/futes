@@ -8,9 +8,9 @@ import { news } from '@/data';
 
 export const News = () => {
   return (
-    <Container className="bg-primary/45 text-black">
+    <Container>
       <section>
-        <h2 className="font-bold text-center text-4xl tracking-wider my-5 text-primary">
+        <h2 className="font-bold text-center text-4xl tracking-wider my-8 text-primary">
           News
         </h2>
 

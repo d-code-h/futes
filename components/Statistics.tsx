@@ -1,15 +1,12 @@
 import React from 'react';
 import Container from './Container';
-import { Button } from './ui/button';
-import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
 import { statistics } from '@/data';
 
 export const Statistics = () => {
   return (
     <Container className="bg-primary/45 text-black">
       <section>
-        <h2 className="font-bold text-center text-4xl tracking-wider my-5 text-primary">
+        <h2 className="font-bold text-center text-4xl tracking-wider my-8 text-primary">
           Key Statistics
         </h2>
 
@@ -25,19 +22,6 @@ export const Statistics = () => {
           ))}
         </div>
       </section>
-
-      <Button
-        variant="ghost"
-        className="block mx-auto my-8 hover:bg-transparent text-xl"
-      >
-        <Link
-          href="/about-us"
-          className="text-primary font-semibold uppercase rounded-lg px-4 flex items-center gap-2 py-3"
-        >
-          <span>See All News</span>
-          <ChevronRight />
-        </Link>
-      </Button>
     </Container>
   );
 };

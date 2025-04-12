@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 
 interface LinkType {
   name: string;
-  href: string;
+  href?: string;
   subMenu?: LinkType[];
 }
 
@@ -20,11 +20,9 @@ const navLinks = [
   { name: 'Home', href: '/' },
   {
     name: 'About',
-    href: '/about',
     subMenu: [
       {
         name: 'Overview',
-        href: '/about/overview',
         subMenu: [
           {
             name: 'About the University',
@@ -62,7 +60,6 @@ const navLinks = [
       },
       {
         name: 'Operations',
-        href: '/about/operations',
         subMenu: [
           {
             name: 'Contact Us',
@@ -76,11 +73,9 @@ const navLinks = [
   { name: 'Admissions', href: '/admissions' },
   {
     name: 'Information',
-    href: '/information',
     subMenu: [
       {
         name: 'Information For',
-        href: '/information/information-for',
         subMenu: [
           { name: 'Departments', href: '/information/departments' },
           { name: 'Library', href: '/information/library' },
@@ -90,7 +85,6 @@ const navLinks = [
       },
       {
         name: 'More',
-        href: '/information/more',
         subMenu: [
           { name: 'FAQS', href: '/information/more/faqs' },
           { name: 'News', href: '/information/more/news' },
@@ -99,7 +93,6 @@ const navLinks = [
       },
       {
         name: 'Portals',
-        href: '/information/portals',
         subMenu: [
           {
             name: 'Staff and Student Portal',
@@ -115,7 +108,6 @@ const navLinks = [
   },
   {
     name: 'Campus Life',
-    href: '/campus-life',
     subMenu: [
       { name: 'Campus and Facilities', href: '/campus-life/campus-facilities' },
       { name: 'Campus Tours', href: '/campus-life/campus-Tours' },
@@ -173,13 +165,17 @@ function Dropdown({ items, depth = 0 }: { items: LinkType; depth?: number }) {
             <div key={subItem.name} className="relative">
               {subItem.subMenu ? (
                 <Dropdown items={subItem} depth={depth + 1} />
-              ) : (
+              ) : subItem?.href ? (
                 <Link
                   href={subItem.href}
                   className="block px-4 py-2 text-sm rounded-sm hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                 >
                   {subItem.name}
                 </Link>
+              ) : (
+                <Button className="block px-4 py-2 text-sm rounded-sm hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                  {subItem.name}
+                </Button>
               )}
             </div>
           ))}
@@ -225,7 +221,7 @@ const SubMenu = ({
 }) => {
   return (
     <div className="pl-2 border-l border-muted">
-      {menu.map(({ name, subMenu }, index) => {
+      {menu.map(({ name, href, subMenu }, index) => {
         const itemId = `${name}-${index}`.toLowerCase().replace(/\s+/g, '-');
 
         return (
@@ -237,7 +233,7 @@ const SubMenu = ({
             >
               <div className="flex items-center gap-2">
                 <ChevronRight className="w-4 h-4 shrink-0" />
-                {name}
+                {href ? <Link href={href}>{name}</Link> : <>{name}</>}
               </div>
               <div>
                 {openSubMenu === itemId ? (
@@ -338,17 +334,22 @@ const Header = () => {
                             height: '16px',
                           }}
                         />
+
                         {link.subMenu ? (
                           <span className="text-lg font-medium hover:underline uppercase">
                             {link.name}
                           </span>
-                        ) : (
+                        ) : link?.href ? (
                           <Link
                             href={link.href}
                             className="text-lg font-medium hover:underline uppercase"
                           >
                             {link.name}
                           </Link>
+                        ) : (
+                          <Button className="text-lg font-medium hover:underline uppercase">
+                            {link.name}
+                          </Button>
                         )}
                       </div>
                       {link.subMenu && (

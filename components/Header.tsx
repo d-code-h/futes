@@ -28,13 +28,10 @@ const navLinks = [
             name: 'About the University',
             href: '/about/overview/about-the-university',
           },
+
           {
-            name: 'FUTES in Timeline',
-            href: '/about/overview/futes-in-timeline',
-          },
-          {
-            name: 'The Chancellor',
-            href: '/about/overview/the-chancellor',
+            name: 'The Vice Chancellor',
+            href: '/about/overview/the-vice-chancellor',
           },
           {
             name: 'Principal Officers',
@@ -52,10 +49,6 @@ const navLinks = [
             name: "FUTES' Vision",
             href: '/about/overview/vision',
           },
-          {
-            name: 'Contact Us',
-            href: '/about/overview/contact-us',
-          },
         ],
       },
       {
@@ -63,7 +56,7 @@ const navLinks = [
         subMenu: [
           {
             name: 'Contact Us',
-            href: '/about/overview/contact-us',
+            href: '/about/operations/contact-us',
           },
         ],
       },
@@ -88,7 +81,6 @@ const navLinks = [
         subMenu: [
           { name: 'FAQS', href: '/information/more/faqs' },
           { name: 'News', href: '/information/more/news' },
-          { name: 'Student Affairs', href: '/information/student-affairs' },
         ],
       },
       {
@@ -110,7 +102,7 @@ const navLinks = [
     name: 'Campus Life',
     subMenu: [
       { name: 'Campus and Facilities', href: '/campus-life/campus-facilities' },
-      { name: 'Campus Tours', href: '/campus-life/campus-Tours' },
+      { name: 'Campus Tours', href: '/campus-life/campus-tours' },
     ],
   },
   { name: 'Research & Teaching', href: '/research-teaching' },
